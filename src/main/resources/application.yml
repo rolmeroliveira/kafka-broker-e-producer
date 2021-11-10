@@ -1,0 +1,23 @@
+spring:
+    kafka:
+        producer:
+            bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        topic:
+            transactions: ${KAFKA_TOPIC:emailtpc}
+
+    datasource:
+        username: root
+        url: ${BANCO_DADOS:jdbc:mysql://localhost:3306/transacoes}
+        testWhileIdle: 'true'
+        validationQuery: SELECT 1
+        password: root
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+        hibernate:
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            ddl-auto: update
+        show-sql: 'true'
